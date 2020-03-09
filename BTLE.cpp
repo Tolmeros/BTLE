@@ -82,6 +82,14 @@ void BTLE::begin( const char* _name ) {
 	radio->powerUp();
 }
 
+void BTLE::begin( const char* _name, byte _mac[6] ) {
+	btleMACRandom = false;
+	for (byte i=0; i<6; i++) {
+		btleMAC[i] = _mac[i];
+	}
+	begin(_name);
+}
+
 // set the current channel (from 37 to 39)
 void BTLE::setChannel( uint8_t num ) {
 	current = min(2,max(0,num-37));

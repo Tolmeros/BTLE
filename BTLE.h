@@ -81,6 +81,7 @@ class BTLE {
 		static nRF_Float to_nRF_Float(float t);
 
 		void begin( const char* _name ); // set BTLE-compatible radio parameters & name
+		void begin( const char* _name, byte _mac[6] ); // set BTLE-compatible radio parameters & name
 
 		void setChannel( uint8_t num ); // set the current channel (from 36 to 38)
 		void hopChannel();              // hop to the next channel
@@ -105,6 +106,9 @@ class BTLE {
 		void whiten( uint8_t len );
 		void swapbuf( uint8_t len );
 		void crc( uint8_t len, uint8_t* dst );
+
+		byte btleMAC[6];
+		bool btleMACRandom = true;
 
 		RF24* radio;       // pointer to the RF24 object managing the radio
 		uint8_t current;   // current channel index
